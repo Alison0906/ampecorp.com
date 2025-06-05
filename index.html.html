@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AMPE Corporation - Construction Experts</title>
+  <style>
+    /* Reset & base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9fafb;
+      color: #333;
+      line-height: 1.6;
+    }
+    a {
+      color: #004080;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #0073e6;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    header {
+      background: #004080;
+      color: #fff;
+      padding: 1rem 2rem;
+      position: sticky;
+      top:0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      user-select: none;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li {
+      display: inline-block;
+    }
+    nav ul li a {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      background-image: url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1470&q=80');
+      background-position: center;
+      background-size: cover;
+      height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      padding: 0 1rem;
+      position: relative;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top:0; left:0; right:0; bottom:0;
+      background: rgba(0, 64, 128, 0.6);
+      z-index: 0;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+    }
+    .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+    }
+    .hero-content p {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+    }
+    .cta-btn {
+      background-color: #ff6600;
+      color: white;
+      padding: 0.75rem 2.5rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(255,102,0,0.6);
+      transition: background-color 0.3s ease;
+    }
+    .cta-btn:hover {
+      background-color: #e65c00;
+    }
+
+    /* Section styles */
+    section {
+      padding: 4rem 1rem;
+      background: white;
+      margin-bottom: 2rem;
+      box-shadow: 0 3px 10px rgb(0 0 0 / 0.05);
+      border-radius: 8px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+    }
+    section h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #004080;
+      font-weight: 700;
+      letter-spacing: 1px;
+      position: relative;
+      z-index: 2;
+    }
+    section p.lead {
+      text-align: center;
+      font-size: 1.15rem;
+      max-width: 700px;
+      margin: 0 auto 3rem auto;
+      color: #555;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Background overlays for About, Services, Contact */
+
+    #about::before,
+    #services::before,
+    #contact::before {
+      content: "";
+      position: absolute;
+      top:0; left:0; right:0; bottom:0;
+      opacity: 0.1;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      border-radius: 8px;
+      z-index: 1;
+      pointer-events: none;
+    }
+    #about::before {
+      background-image: url('https://images.unsplash.com/photo-1528223909953-66a4a5383a8b?auto=format&fit=crop&w=1470&q=80');
+    }
+    #services::before {
+      background-image: url('https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?auto=format&fit=crop&w=1470&q=80');
+    }
+    #contact::before {
+      background-image: url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1470&q=80');
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2.5rem;
+      padding: 0 1rem;
+      position: relative;
+      z-index: 2;
+    }
+    .service-item {
+      background: #f0f6fc;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 10px rgb(0 64 128 / 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+      position: relative;
+      z-index: 2;
+    }
+    .service-item:hover {
+      box-shadow: 0 6px 20px rgb(0 64 128 / 0.3);
+      transform: translateY(-6px);
+    }
+    .service-item img {
+      width: 80px;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1));
+    }
+    .service-item h3 {
+      margin-bottom: 0.75rem;
+      color: #004080;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+    .service-item p {
+      color: #444;
+      flex-grow: 1;
+    }
+
+    /* Contact Section */
+    .contact-info {
+      max-width: 500px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 1.1rem;
+      color: #333;
+      position: relative;
+      z-index: 2;
+    }
+    .contact-info p {
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+    .contact-info a {
+      color: #004080;
+      font-weight: 700;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1rem 1rem;
+      background: #004080;
+      color: white;
+      font-size: 0.9rem;
+      user-select: none;
+    }
+
+    /* Responsive Nav for small screens */
+    @media (max-width: 600px) {
+      nav ul {
+        flex-direction: column;
+        background: #003366;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
+      nav ul.show {
+        max-height: 250px;
+      }
+      nav ul li {
+        margin: 1rem 0;
+        text-align: center;
+      }
+      .menu-toggle {
+        display: block;
+        cursor: pointer;
+        font-size: 1.5rem;
+        user-select: none;
+      }
+    }
+    @media (min-width: 601px) {
+      .menu-toggle {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">AMPE Corporation</div>
+        <div class="menu-toggle" id="menuToggle">&#9776;</div>
+        <ul id="navLinks">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" aria-label="Hero Banner with company introduction">
+    <div class="hero-content">
+      <h1>Building the Future, Restoring the Earth</h1>
+      <p>Professional Commercial, Residential & Earthwork Construction Services</p>
+      <button class="cta-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get in Touch</button>
+    </div>
+  </section>
+
+  <section id="about" aria-labelledby="aboutTitle">
+    <h2 id="aboutTitle">About AMPE Corporation</h2>
+    <p class="lead">
+      AMPE Corporation is your trusted partner in construction, specializing in commercial buildings, residential projects, and earth work including hauling and disposal of soil, as well as supply and delivery of aggregates. With decades of experience and a commitment to quality, safety, and sustainability, we build projects you can depend on.
+    </p>
+  </section>
+
+  <section id="services" aria-labelledby="servicesTitle">
+    <h2 id="servicesTitle">Our Services</h2>
+    <div class="services-grid">
+      <article class="service-item" aria-describedby="service1desc">
+        <img src="https://img.icons8.com/ios-filled/100/004080/building--v1.png" alt="Commercial Building Icon" />
+        <h3>Commercial Building Construction</h3>
+        <p id="service1desc">Expert construction solutions for office complexes, retail centers, warehouses, and industrial buildings tailored to your business needs.</p>
+      </article>
+      <article class="service-item" aria-describedby="service2desc">
+        <img src="https://img.icons8.com/ios-filled/100/004080/home--v1.png" alt="Residential Building Icon" />
+        <h3>Residential Construction</h3>
+        <p id="service2desc">Quality home building services including single-family homes, multi-family residences, renovations, and custom designs to bring your dream home to life.</p>
+      </article>
+      <article class="service-item" aria-describedby="service3desc">
+        <img src="https://img.icons8.com/ios-filled/100/004080/earth-planet--v1.png" alt="Earthwork Icon" />
+        <h3>Earth Work Projects</h3>
+        <p id="service3desc">Comprehensive earth moving services including hauling and disposal of soil, grading, excavation, and the supply and delivery of aggregates.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="contact" aria-labelledby="contactTitle">
+    <h2 id="contactTitle">Contact Us</h2>
+    <div class="contact-info">
+      <p><strong>AMPE Corporation</strong></p>
+      <p>123 Construction Road</p>
+      <p>Buildtown, ST 56789</p>
+      <p>Phone: <a href="tel:+12345678900">+1 (234) 567-8900</a></p>
+      <p>Email: <a href="mailto:info@ampecorp.com">info@ampecorp.com</a></p>
+      <p>Visit us for a consultation or project estimate.</p>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2024 AMPE Corporation. All rights reserved.
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({behavior:'smooth'});
+          navLinks.classList.remove('show');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
